@@ -9,8 +9,66 @@
 import SwiftUI
 
 struct MeterView : View {
+    
+    @State private var meterValue = 0.35
+    
+    let size = CGSize.init(width: 100.0, height: 360.0)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            ZStack (alignment: .bottom) {
+                Rectangle()
+                    .frame(width:size.width, height: size.height, alignment: .center)
+                    .foregroundColor(Color(hexValue: ALMOND_COLOR))
+                Rectangle()
+                    .frame(width: size.width, height: size.height * CGFloat(meterValue), alignment: .center)
+                    .foregroundColor(Color(hexValue: COPPER_PENNY_COLOR))
+            }
+            .gesture( DragGesture()
+                .onChanged {
+                    print(($0.startLocation.y-$0.location.y)/self.size.height)
+            })
+            .cornerRadius(30)
+            SeperatorLinesBlock(area: size, sections: 10)
+        }
+    }
+}
+
+// MARK: Helper views
+
+struct SeperatorLinesBlock : View {
+        
+    var area: CGSize
+    var lineWeight: CGFloat
+    var sections: Int
+    
+    let color = Color(hexValue: ALMOND_COLOR).lighten(0.4)
+    
+    // computed properties
+    private var padding : CGFloat {
+        return area.height/CGFloat(2*sections+1)
+    }
+    
+    // body
+    var body : some View {
+        VStack(spacing: 0) {
+            ForEach(0..<sections-1, id: \.self) { _ in
+                Rectangle()
+                    .frame(width: self.area.width, height: self.lineWeight)
+                    .foregroundColor(self.color)
+                    .padding(self.padding)
+            }
+        }
+    }
+}
+
+
+extension SeperatorLinesBlock {
+    
+    init(area: CGSize, sections: Int) {
+        self.lineWeight = 1.5
+        self.area = area
+        self.sections = max(1, sections)
     }
 }
 
@@ -21,3 +79,4 @@ struct MeterView_Previews : PreviewProvider {
     }
 }
 #endif
+

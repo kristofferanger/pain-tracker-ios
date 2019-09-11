@@ -16,6 +16,8 @@
 		C93D2C92231FDF150055CDC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93D2C90231FDF150055CDC4 /* LaunchScreen.storyboard */; };
 		C93D2C9D231FDF150055CDC4 /* PainTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2C9C231FDF150055CDC4 /* PainTrackerTests.swift */; };
 		C93D2CA8231FDF150055CDC4 /* PainTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2CA7231FDF150055CDC4 /* PainTrackerUITests.swift */; };
+		C93D2CB6231FE5150055CDC4 /* ColorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */; };
+		C95E5E2F2321165B0074A103 /* MeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E5E2E2321165B0074A103 /* MeterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		C93D2CA3231FDF150055CDC4 /* PainTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PainTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C93D2CA7231FDF150055CDC4 /* PainTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainTrackerUITests.swift; sourceTree = "<group>"; };
 		C93D2CA9231FDF150055CDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelpers.swift; sourceTree = "<group>"; };
+		C95E5E2E2321165B0074A103 /* MeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 		C93D2C81231FDF110055CDC4 /* PainTracker */ = {
 			isa = PBXGroup;
 			children = (
+				C95E5E2D232116360074A103 /* New Group */,
 				C93D2C82231FDF110055CDC4 /* AppDelegate.swift */,
 				C93D2C84231FDF110055CDC4 /* SceneDelegate.swift */,
 				C93D2C89231FDF110055CDC4 /* ContentView.swift */,
@@ -109,6 +114,8 @@
 				C93D2C93231FDF150055CDC4 /* Info.plist */,
 				C93D2C86231FDF110055CDC4 /* PainTracker.xcdatamodeld */,
 				C93D2C8D231FDF150055CDC4 /* Preview Content */,
+				C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */,
+				C95E5E2E2321165B0074A103 /* MeterView.swift */,
 			);
 			path = PainTracker;
 			sourceTree = "<group>";
@@ -137,6 +144,13 @@
 				C93D2CA9231FDF150055CDC4 /* Info.plist */,
 			);
 			path = PainTrackerUITests;
+			sourceTree = "<group>";
+		};
+		C95E5E2D232116360074A103 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,10 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95E5E2F2321165B0074A103 /* MeterView.swift in Sources */,
 				C93D2C83231FDF110055CDC4 /* AppDelegate.swift in Sources */,
 				C93D2C88231FDF110055CDC4 /* PainTracker.xcdatamodeld in Sources */,
 				C93D2C8A231FDF110055CDC4 /* ContentView.swift in Sources */,
 				C93D2C85231FDF110055CDC4 /* SceneDelegate.swift in Sources */,
+				C93D2CB6231FE5150055CDC4 /* ColorHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
