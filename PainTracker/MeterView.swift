@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct MeterView : View {
-    
-    @State private var meterValue = 0.35
+        
+    @State private var meterValue : CGFloat = 0.3
     
     let size = CGSize.init(width: 100.0, height: 360.0)
     
@@ -21,12 +21,13 @@ struct MeterView : View {
                     .frame(width:size.width, height: size.height, alignment: .center)
                     .foregroundColor(Color(hexValue: ALMOND_COLOR))
                 Rectangle()
-                    .frame(width: size.width, height: size.height * CGFloat(meterValue), alignment: .center)
+                    .frame(width: size.width, height: meterValue*size.height, alignment: .center)
                     .foregroundColor(Color(hexValue: COPPER_PENNY_COLOR))
             }
             .gesture( DragGesture()
                 .onChanged {
-                    print(($0.startLocation.y-$0.location.y)/self.size.height)
+                    self.meterValue -= $0.translation.height/self.size.height
+
             })
             .cornerRadius(30)
             SeperatorLinesBlock(area: size, sections: 10)
