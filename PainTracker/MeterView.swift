@@ -9,26 +9,26 @@
 import SwiftUI
 
 struct MeterView : View {
-        
-    @State private var meterValue : CGFloat = 0.3
+    
+    var meterValue : CGFloat {
+        didSet {
+             self.previousValue = meterValue
+        }
+    }
+    private(set) var previousValue : CGFloat = 0
     
     let size = CGSize.init(width: 100.0, height: 360.0)
-    
+
     var body: some View {
         ZStack {
             ZStack (alignment: .bottom) {
                 Rectangle()
-                    .frame(width:size.width, height: size.height, alignment: .center)
+                    .frame(width:size.width, height: size.height + 1.5, alignment: .center)
                     .foregroundColor(Color(hexValue: ALMOND_COLOR))
                 Rectangle()
-                    .frame(width: size.width, height: meterValue*size.height, alignment: .center)
+                    .frame(width: size.width, height: meterValue * self.size.height, alignment: .center)
                     .foregroundColor(Color(hexValue: COPPER_PENNY_COLOR))
             }
-            .gesture( DragGesture()
-                .onChanged {
-                    self.meterValue -= $0.translation.height/self.size.height
-
-            })
             .cornerRadius(30)
             SeperatorLinesBlock(area: size, sections: 10)
         }
@@ -40,10 +40,10 @@ struct MeterView : View {
 struct SeperatorLinesBlock : View {
         
     var area: CGSize
-    var lineWeight: CGFloat
     var sections: Int
+    var lineWeight: CGFloat
     
-    let color = Color(hexValue: ALMOND_COLOR).lighten(0.4)
+    let lineColor = Color(hexValue: ALMOND_COLOR).lighten(0.4)
     
     // computed properties
     private var padding : CGFloat {
@@ -56,13 +56,12 @@ struct SeperatorLinesBlock : View {
             ForEach(0..<sections-1, id: \.self) { _ in
                 Rectangle()
                     .frame(width: self.area.width, height: self.lineWeight)
-                    .foregroundColor(self.color)
+                    .foregroundColor(self.lineColor)
                     .padding(self.padding)
             }
         }
     }
 }
-
 
 extension SeperatorLinesBlock {
     
@@ -74,10 +73,10 @@ extension SeperatorLinesBlock {
 }
 
 #if DEBUG
-struct MeterView_Previews : PreviewProvider {
-    static var previews: some View {
-        MeterView()
-    }
-}
+//struct MeterView_Previews : PreviewProvider {
+//    static var previews: some View {
+//        MeterView()
+//    }
+//}
 #endif
 
