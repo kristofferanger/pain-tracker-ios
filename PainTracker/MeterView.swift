@@ -10,13 +10,8 @@ import SwiftUI
 
 struct MeterView : View {
     
-    var meterValue : CGFloat {
-        didSet {
-             self.previousValue = meterValue
-        }
-    }
-    private(set) var previousValue : CGFloat = 0
-    
+    var meterValue : CGFloat
+        
     let size = CGSize.init(width: 100.0, height: 360.0)
 
     var body: some View {
@@ -27,7 +22,7 @@ struct MeterView : View {
                     .foregroundColor(Color(hexValue: ALMOND_COLOR))
                 Rectangle()
                     .frame(width: size.width, height: meterValue * self.size.height, alignment: .center)
-                    .foregroundColor(Color(hexValue: COPPER_PENNY_COLOR))
+                    .foregroundColor(Color(hexValue: WILLPOWER_ORANGE_COLOR))
             }
             .cornerRadius(30)
             SeperatorLinesBlock(area: size, sections: 10)
@@ -73,10 +68,10 @@ extension SeperatorLinesBlock {
 }
 
 #if DEBUG
-//struct MeterView_Previews : PreviewProvider {
-//    static var previews: some View {
-//        MeterView()
-//    }
-//}
+struct MeterView_Previews : PreviewProvider {
+    static var previews: some View {
+        MeterView(meterValue: 1/4)
+    }
+}
 #endif
 

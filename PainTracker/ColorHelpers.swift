@@ -9,11 +9,13 @@
 import Foundation
 import SwiftUI
 
-let PLATINUM_COLOR = 0xeee2df
+// Colors generated from: https://coolors.co/595758-fd5800-eed7c5-ffeef2-ffe4f3
+
+let DAVYS_GRAY_COLOR = 0x595758
+let WILLPOWER_ORANGE_COLOR = 0xfd5800
 let ALMOND_COLOR = 0xeed7c5
-let TUSCANY_COLOR = 0xc89f9c
-let COPPER_RED_COLOR = 0xc97c5d
-let COPPER_PENNY_COLOR = 0xb36a5e
+let LAVENDER_BLUCH_COLOR = 0xffeef2
+let PINK_LACE_COLOR = 0xffe4f3
 
 
 // MARK: color helpers
@@ -51,8 +53,8 @@ extension Color {
         return Color.init(red: r, green: g, blue: b)
     }
 
-    // convenience blend() with plus-operator
-    static func +(lhs: Color, rhs: Color) -> Color {
+    // plus-operator for convenience blend()
+    static func + (lhs: Color, rhs: Color) -> Color {
         return lhs.blend(withColor: rhs)
     }
     
