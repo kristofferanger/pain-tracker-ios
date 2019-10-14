@@ -10,21 +10,20 @@ import SwiftUI
 
 struct MeterView : View {
     
-    var meterValue : CGFloat
-        
+    var value : CGFloat
     let size = CGSize.init(width: 100.0, height: 360.0)
 
     var body: some View {
         ZStack {
             ZStack (alignment: .bottom) {
                 Rectangle()
-                    .frame(width:size.width, height: size.height + 1.5, alignment: .center)
+                    .frame(width:size.width, height: size.height + 1, alignment: .center)
                     .foregroundColor(Color(hexValue: ALMOND_COLOR))
                 Rectangle()
-                    .frame(width: size.width, height: meterValue * self.size.height, alignment: .center)
+                    .frame(width: size.width, height: value * self.size.height, alignment: .center)
                     .foregroundColor(Color(hexValue: WILLPOWER_ORANGE_COLOR))
             }
-            .cornerRadius(30)
+            .clipShape(RoundedRectangle(cornerRadius: 40))
             SeperatorLinesBlock(area: size, sections: 10)
         }
     }
@@ -48,7 +47,7 @@ struct SeperatorLinesBlock : View {
     // body
     var body : some View {
         VStack(spacing: 0) {
-            ForEach(0..<sections-1, id: \.self) { _ in
+            ForEach(0..<sections-1) { _ in
                 Rectangle()
                     .frame(width: self.area.width, height: self.lineWeight)
                     .foregroundColor(self.lineColor)
@@ -70,7 +69,7 @@ extension SeperatorLinesBlock {
 #if DEBUG
 struct MeterView_Previews : PreviewProvider {
     static var previews: some View {
-        MeterView(meterValue: 1/4)
+        MeterView(value: 1/4)
     }
 }
 #endif

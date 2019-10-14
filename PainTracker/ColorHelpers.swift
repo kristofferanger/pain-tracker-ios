@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 // Colors generated from: https://coolors.co/595758-fd5800-eed7c5-ffeef2-ffe4f3
 
@@ -28,19 +29,23 @@ extension Color {
             green: Double((hex >> 08) & 0xff) / 255.0,
             blue: Double((hex >> 00) & 0xff) / 255.0
         )
-        self = Color.init(.sRGB, red: components.red, green: components.green, blue: components.blue, opacity: 1)
+        self = Color(.sRGB, red: components.red, green: components.green, blue: components.blue, opacity: 1)
     }
 
     func lighten(_ value: Double) -> Color {
-        
         let acceptableValue = max(-1.0, min( 1.0, value))
         let white = acceptableValue > 0 ? 1.0 : 0.0
         let opacity = abs(acceptableValue)
         
-        return self + Color.init(.sRGB, white: white, opacity: opacity)
+        return self + Color(.sRGB, white: white, opacity: opacity)
     }
     
-    func blend(withColor color: Color = .clear) -> Color {
+    // plus-operator for convenience blend()
+    static func +(lhs: Color, rhs: Color) -> Color {
+        return lhs.blend(withColor: rhs)
+    }
+    
+    func blend(withColor color: Color) -> Color {
         
         let selfComponents = self.components()
         let blendingColorComponents = color.components()
@@ -50,12 +55,7 @@ extension Color {
         let g = Double(alpha * blendingColorComponents.g + (1 - alpha) * selfComponents.g)
         let b = Double(alpha * blendingColorComponents.b + (1 - alpha) * selfComponents.b)
         
-        return Color.init(red: r, green: g, blue: b)
-    }
-
-    // plus-operator for convenience blend()
-    static func + (lhs: Color, rhs: Color) -> Color {
-        return lhs.blend(withColor: rhs)
+        return Color(red: r, green: g, blue: b)
     }
     
     private func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
@@ -65,7 +65,9 @@ extension Color {
         
         var r: CGFloat = 0, g: CGFloat = 0.0, b: CGFloat = 0.0, a: CGFloat = 0.0
 
-        if scanner.scanHexInt64(&hexNumber) {
+        let result = scanner.scanHexInt64(&hexNumber)
+        
+        if result {
             r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
             g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
             b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
@@ -74,5 +76,21 @@ extension Color {
         return (r, g, b, a)
     }
 }
+
+
+extension UIColor {
+    public convenience init(hexValue hex: Int) {
+        
+        let components = (
+            red: CGFloat((hex >> 16) & 0xff) / 255.0,
+            green: CGFloat((hex >> 08) & 0xff) / 255.0,
+            blue: CGFloat((hex >> 00) & 0xff) / 255.0
+        )
+        
+        self.init(red: components.red, green: components.green, blue: components.blue, alpha: 1)
+    }
+
+}
+
 
 

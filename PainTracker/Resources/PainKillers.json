@@ -1,0 +1,192 @@
+[
+   {
+      "brand":"Pamol",
+      "summary":"filmdragerad tablett 500 mg 20 st",
+      "ean":7046260604841,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/pamol-filmdragerad-tablett-500-mg-20-tabletter-1.jpg"
+   },
+   {
+      "brand":"Ibuprofen Orifarm",
+      "summary":"tablett 400 mg 30 st",
+      "ean":7046260613799,
+      "category":"feber-vark",
+      "active_substances":[
+         "ibuprofen"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/ibuprofen-orifarm-filmdragerad-tablett-400-mg-30-st-0.jpg"
+   },
+   {
+      "brand":"Alvedon",
+      "summary":"filmdragerad tablett 500 mg, 20 st",
+      "ean":7046260976108,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/alvedon-filmdragerad-tablett-500-mg-20-st-1.jpg"
+   },
+   {
+      "brand":"Ipren",
+      "summary":"filmdragerad tablett 400 mg 30 st",
+      "ean":7046260885349,
+      "category":"feber-vark",
+      "active_substances":[
+         "ibuprofen"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/ipren-filmdragerad-tablett-400-mg-30-st-0.jpg"
+   },
+   {
+      "brand":"Paracetamol Orifarm",
+      "summary":"filmdragerad tablett 500 mg 20 st",
+      "ean":7046263777979,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/paracetamol-orifarm-filmdragerad-tablett-500-mg-20-st-0.jpg"
+   },
+   {
+      "brand":"Alvedon Novum",
+      "summary":"filmdragerad tablett 500 mg 20 st",
+      "ean":7046260676800,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/alvedon-novum-filmdragerad-tablett-500-mg-20-st-1.jpg"
+   },
+   {
+      "brand":"Diclofenac T ratiopharm",
+      "summary":"filmdragerad tablett 25 mg 20 st",
+      "ean":7046260439313,
+      "category":"feber-vark",
+      "active_substances":[
+         "diklofenakkalium"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/8281-1.jpg"
+   },
+   {
+      "brand":"Treo",
+      "summary":"brustablett 500 mg/50 mg 3 x 20 st",
+      "ean":7046261461948,
+      "category":"feber-vark",
+      "active_substances":[
+         "acetylsalicylsyra",
+         "koffein"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/treo-brustablett-500-mg-50-mg-3x20-st-0.jpg"
+   },
+   {
+      "brand":"Ibumetin",
+      "summary":"tablett 400 mg 30 st",
+      "ean":7046264739679,
+      "category":"feber-vark",
+      "active_substances":[
+         "Ibuprofen"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/ibumetin-tablett-400-mg-30-st-2.jpg"
+   },
+   {
+      "brand":"Naproxen Orifarm",
+      "summary":"tablett 250 mg 20 st",
+      "ean":7046261306164,
+      "category":"feber-vark",
+      "active_substances":[
+         "naproxen"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/5289-1.jpg"
+   },
+   {
+      "brand":"Voltaren",
+      "summary":"gel 23,2 mg/g 100 g",
+      "ean":7046265330226,
+      "category":"feber-vark",
+      "active_substances":[
+         "diklofenakdietylamin"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/voltaren-gel-100-g-4.jpg"
+   },
+   {
+      "brand":"Panodil",
+      "summary":"filmdragerad tablett 500 mg 20 st",
+      "ean":7046260828087,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/panodil-tablett-500-mg-20-st-1.jpg"
+   },
+   {
+      "brand":"Panodil Zapp",
+      "summary":"filmdragerad tablett 500 mg 20 st",
+      "ean":7046260827974,
+      "category":"feber-vark",
+      "active_substances":[
+         "paracetamol"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/panodil-zapp-filmdragerad-tablett-500-mg-20-st-1.jpg"
+   },
+   {
+      "brand":"Voltaren T",
+      "summary":"dragerad tablett 25 mg 20 st",
+      "ean":7046260561069,
+      "category":"feber-vark",
+      "active_substances":[
+         "diklofenakkalium"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/7521-1.jpg"
+   },
+   {
+      "brand":"Bamyl koffein",
+      "summary":"brustablett 500 mg/50 mg 2 x 25 st",
+      "ean":7046260427426,
+      "category":"feber-vark",
+      "active_substances":[
+         "acetylsalicylsyra",
+         "koffein"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/bamyl-koffein-brustablett-500-mg-per-50-mg-2x25-st-0.jpg"
+   },
+   {
+      "brand":"Sumatriptan Teva",
+      "summary":"filmdragerad tablett 50 mg 2 st",
+      "ean":7046261021418,
+      "category":"feber-vark",
+      "active_substances":[
+         "sumatriptan",
+         "LAKTOS"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/sumatriptan-teva-tablett-50-mg-2-st-0.jpg"
+   },
+   {
+      "brand":"Artrox",
+      "summary":"filmdragerad tablett 625 mg 60 st",
+      "ean":7046260188426,
+      "category":"feber-vark",
+      "active_substances":[
+         "glukosamin"
+      ],
+      "prescription":false,
+      "image_url":"https://media.apotea.se/product-images/XL/5216-1.jpg"
+   }
+]

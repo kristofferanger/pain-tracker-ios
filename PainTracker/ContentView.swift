@@ -7,57 +7,80 @@
 //
 
 import SwiftUI
+import Combine
 
-let DEFAULT_HEIGHT : CGFloat = 1/3
+struct ContentView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    @EnvironmentObject private var userData: UserData
 
-struct ContentView : View {
     
-    @State private var meterValue = (current: DEFAULT_HEIGHT, previous: DEFAULT_HEIGHT) {
-        didSet {
-            // when value out-of-bounds use the cropped value instead
-            if let value = croppedPercentValue(meterValue.current) {
-                meterValue.current = value
-            }
-        }
-    }
+    @FetchRequest(fetchRequest: PainItem.painItemfetchRequest()) var painItems
+    @State private var newPainItem = ""
     
-    private func croppedPercentValue<T : Comparable & Numeric>(_ value: T) -> T? {
-        let croppedValue = min(1, max(0, value))
-        return value == croppedValue ? nil : croppedValue
-    }
-    
+    @State private var showingModal = false
+
     var body: some View {
-        
-        let meterView = MeterView(meterValue: meterValue.current)
-        
-        return ZStack {
-            Rectangle()
-                .foregroundColor(Color(hexValue: ALMOND_COLOR).lighten(0.7))
-            VStack (spacing: 10) {
-                Text("Markera din nivå av smärta just nu på en skala mellan 1 och 10.")
-                    .padding([.leading, .trailing], 40)
-                Text(String(format:"%.1f", self.meterValue.current * 10))
-                    .font(.largeTitle)
-                    .bold()
-                meterView
+    
+        NavigationView {
+            List() {
+                ForEach(userData.hikes) { hike in
+                    HikeView(hike: hike)
+                }
             }
+            .navigationBarTitle("PainTracker")
+            .navigationBarItems(trailing:
+                HStack {
+                    Button(action: {
+                        self.showingModal.toggle()
+                    }) {
+                        Image(systemName: "plus")
+                    }.sheet(isPresented: $showingModal) {
+                        DetailView(isShowing: self.$showingModal)
+                    }
+                }
+            )
         }
-        .edgesIgnoringSafeArea([.all])
-        .gesture(DragGesture()
-                   .onChanged() { gestureValue in
-                       self.meterValue.current = self.meterValue.previous - gestureValue.translation.height/meterView.size.height
-                   }
-                   .onEnded { gestureValue in
-                       self.meterValue.previous = self.meterValue.current
-               })
+    }
+    
+    
+    
+    private func backgroundColor() -> Color  {
+        return colorScheme == .dark ? Color(hexValue: ALMOND_COLOR).lighten(-0.1) : Color(hexValue: ALMOND_COLOR).lighten(0.7)
+    }
+}
+
+struct TextView: UIViewRepresentable {
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextView {
+        return UITextView()
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
     }
 }
 
 
+struct TableView: UIViewRepresentable {
+    
+    @Binding var color: String
+
+    
+    func makeUIView(context: Context) -> UITableView {
+        return UITableView()
+    }
+    
+    func updateUIView(_ uiView: UITableView, context: Context) {
+        uiView.backgroundColor = UIColor.clear
+    }
+}
 
 
 #if DEBUG
-struct ContentView_Previews : PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
