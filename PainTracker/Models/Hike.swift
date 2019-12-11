@@ -7,13 +7,15 @@ The model for a hike.
 
 import SwiftUI
 
+typealias Hikes = [Hike]
+
 struct Hike: Codable, Identifiable {
-    var name: String
-    var id: Int
-    var distance: Double
-    var difficulty: Int
-    var observations: [Observation]
-    var date: Date
+    let name: String
+    let id: Int
+    let distance: Double
+    let difficulty: Int
+    let observations: [Observation]
+    let date: Date
 
     static var lengthFormatter = LengthFormatter()
     static var dateFormatter = DateFormatter()
@@ -40,7 +42,7 @@ struct Hike: Codable, Identifiable {
         let highestValue = rangeArray.first?.elevation.upperBound ?? 0
         return String(format: "Highest: %.1f", highestValue/100)
     }
-//
+
     var weeklyDurestText: String {
         let rangeArray = observations.sorted(by: { $0.elevation.upperBound-$0.elevation.lowerBound > $1.elevation.upperBound-$1.elevation.lowerBound })
         let highestValue = (rangeArray.first?.elevation.upperBound ?? 0) - (rangeArray.first?.elevation.lowerBound ?? 0)
@@ -59,11 +61,11 @@ struct Hike: Codable, Identifiable {
     
     // nested struct
     struct Observation: Codable, Hashable {
-        var distanceFromStart: Double
+        let distanceFromStart: Double
         
-        var elevation: Range<Double>
-        var pace: Range<Double>
-        var heartRate: Range<Double>
+        let elevation: Range<Double>
+        let pace: Range<Double>
+        let heartRate: Range<Double>
     }
 }
 

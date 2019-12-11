@@ -8,9 +8,10 @@ A model object that stores app data.
 import Combine
 import SwiftUI
 
+
+
 final class UserData: ObservableObject {
-    @Published var showFavoritesOnly = false
-//    @Published var landmarks = landmarkData
     
-    @Published var hikes = hikeData
+    @Published var hikes: Hikes = load("hikeData.json", as: Hikes.self)
+    @Published var painKillers: PainKillers = load("PainKillers.json", as: PainKillers.self)
 }

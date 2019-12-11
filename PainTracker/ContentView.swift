@@ -10,21 +10,32 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    
+        
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     @EnvironmentObject private var userData: UserData
 
     
-    @FetchRequest(fetchRequest: PainItem.painItemfetchRequest()) var painItems
-    @State private var newPainItem = ""
+    @FetchRequest(
+        entity: PainItem.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \PainItem.date, ascending: true)]
+    ) var painItems: FetchedResults<PainItem>
     
+    
+    var painTrackingWeeks: [FetchedResults<PainItem>] {
+        
+        var array = [FetchedResults<PainItem>]()
+        for item in painItems {
+        }
+        return array
+    }
+    
+    @State private var newPainItem = ""
     @State private var showingModal = false
 
     var body: some View {
     
         NavigationView {
-            List() {
+            List {
                 ForEach(userData.hikes) { hike in
                     HikeView(hike: hike)
                 }
@@ -37,47 +48,21 @@ struct ContentView: View {
                     }) {
                         Image(systemName: "plus")
                     }.sheet(isPresented: $showingModal) {
-                        DetailView(isShowing: self.$showingModal)
+                        DetailView()
+                            .environment(\.managedObjectContext, self.managedObjectContext)
+                            .environmentObject(self.userData)
                     }
                 }
             )
         }
     }
     
-    
-    
-    private func backgroundColor() -> Color  {
-        return colorScheme == .dark ? Color(hexValue: ALMOND_COLOR).lighten(-0.1) : Color(hexValue: ALMOND_COLOR).lighten(0.7)
+    init(){
+        UITableView.appearance().backgroundColor = Color.backgroundColor().uiColor()
+        UINavigationBar.appearance().barTintColor = Color.backgroundColor().uiColor()
+        UITableViewCell.appearance().backgroundColor = .clear
     }
 }
-
-struct TextView: UIViewRepresentable {
-    @Binding var text: String
-
-    func makeUIView(context: Context) -> UITextView {
-        return UITextView()
-    }
-
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
-    }
-}
-
-
-struct TableView: UIViewRepresentable {
-    
-    @Binding var color: String
-
-    
-    func makeUIView(context: Context) -> UITableView {
-        return UITableView()
-    }
-    
-    func updateUIView(_ uiView: UITableView, context: Context) {
-        uiView.backgroundColor = UIColor.clear
-    }
-}
-
 
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {

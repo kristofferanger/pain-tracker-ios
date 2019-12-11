@@ -40,7 +40,6 @@ struct HikeView: View {
                     Text(verbatim: hike.weeklyDurestText)
                     .font(.subheadline)
                         .foregroundColor(.secondary)
-                    
                 }
 
                 Spacer()
@@ -69,13 +68,13 @@ struct HikeView: View {
     }
 }
 
-struct HikeView_Previews: PreviewProvider {
-    static var previews: some View {
-                
-        return VStack {
-            HikeView(hike: hikeData[0])
-                .padding()
-            Spacer()
-        }
-    }
-}
+//struct HikeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//                
+//        return VStack {
+//            HikeView(hike: hikeData[0])
+//                .padding()
+//            Spacer()
+//        }
+//    }
+//}

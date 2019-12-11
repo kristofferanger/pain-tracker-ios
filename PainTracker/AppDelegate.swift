@@ -9,13 +9,16 @@
 import UIKit
 import CoreData
 
+import SwiftUI
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
+//        UITableView.appearance().backgroundColor = UIColor.clear
+//        UIView.appearance(whenContainedInInstancesOf:[UIHostingController<View>.self]).backgroundColor = UIColor.orange
         return true
     }
 

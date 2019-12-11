@@ -27,10 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let managedObjectContext = appDelegate.persistentContainer.viewContext
             let contentView = ContentView().environment(\.managedObjectContext, managedObjectContext).environmentObject(UserData())
             
-            let hostingController = UIHostingController(rootView: contentView)
-            window.rootViewController = hostingController
+            window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
-            window.rootViewController?.view.backgroundColor = UIColor(hexValue: ALMOND_COLOR)
             
             window.makeKeyAndVisible()
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C91164782355F32E003E5D9D /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91164772355F32E003E5D9D /* TableView.swift */; };
 		C92938B123545F91001C9389 /* hikeData.json in Resources */ = {isa = PBXBuildFile; fileRef = C92938B023545F91001C9389 /* hikeData.json */; };
 		C92938B323545FAF001C9389 /* HikeGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92938B223545FAF001C9389 /* HikeGraph.swift */; };
 		C92938B523545FDC001C9389 /* HikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92938B423545FDC001C9389 /* HikeView.swift */; };
@@ -23,13 +24,14 @@
 		C93D2C8C231FDF150055CDC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93D2C8B231FDF150055CDC4 /* Assets.xcassets */; };
 		C93D2C8F231FDF150055CDC4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93D2C8E231FDF150055CDC4 /* Preview Assets.xcassets */; };
 		C93D2C92231FDF150055CDC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93D2C90231FDF150055CDC4 /* LaunchScreen.storyboard */; };
-		C93D2C9D231FDF150055CDC4 /* PainTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2C9C231FDF150055CDC4 /* PainTrackerTests.swift */; };
 		C93D2CA8231FDF150055CDC4 /* PainTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2CA7231FDF150055CDC4 /* PainTrackerUITests.swift */; };
 		C93D2CB6231FE5150055CDC4 /* ColorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */; };
 		C95E5E2F2321165B0074A103 /* MeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E5E2E2321165B0074A103 /* MeterView.swift */; };
-		C95E81C923507B1A00E3D18A /* PainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E81C823507B1A00E3D18A /* PainItem.swift */; };
 		C95E81CB23508E8200E3D18A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E81CA23508E8200E3D18A /* DetailView.swift */; };
 		C97858632346644C0042EF3B /* PainKillers.json in Resources */ = {isa = PBXBuildFile; fileRef = C97858622346644C0042EF3B /* PainKillers.json */; };
+		C98D31AC2382AA8D0039BBCA /* WeekSummaryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D31AB2382AA8D0039BBCA /* WeekSummaryItem.swift */; };
+		C9AEBF4923799CC900795119 /* PainKiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AEBF4823799CC900795119 /* PainKiller.swift */; };
+		C9E3662C237C2103005A4A5C /* PainTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93D2C9C231FDF150055CDC4 /* PainTrackerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C91164772355F32E003E5D9D /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		C92938B023545F91001C9389 /* hikeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hikeData.json; sourceTree = "<group>"; };
 		C92938B223545FAF001C9389 /* HikeGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeGraph.swift; sourceTree = "<group>"; };
 		C92938B423545FDC001C9389 /* HikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HikeView.swift; sourceTree = "<group>"; };
@@ -76,9 +79,10 @@
 		C93D2CA9231FDF150055CDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelpers.swift; sourceTree = "<group>"; };
 		C95E5E2E2321165B0074A103 /* MeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeterView.swift; sourceTree = "<group>"; };
-		C95E81C823507B1A00E3D18A /* PainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainItem.swift; sourceTree = "<group>"; };
 		C95E81CA23508E8200E3D18A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C97858622346644C0042EF3B /* PainKillers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PainKillers.json; sourceTree = "<group>"; };
+		C98D31AB2382AA8D0039BBCA /* WeekSummaryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSummaryItem.swift; sourceTree = "<group>"; };
+		C9AEBF4823799CC900795119 /* PainKiller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainKiller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				C92938BA2354601A001C9389 /* UserData.swift */,
 				C92938BB2354601A001C9389 /* Hike.swift */,
 				C92938BC2354601A001C9389 /* Landmark.swift */,
+				C9AEBF4823799CC900795119 /* PainKiller.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,9 +150,11 @@
 				C93D2C82231FDF110055CDC4 /* AppDelegate.swift */,
 				C93D2C84231FDF110055CDC4 /* SceneDelegate.swift */,
 				C93D2C89231FDF110055CDC4 /* ContentView.swift */,
+				C95E81CA23508E8200E3D18A /* DetailView.swift */,
 				C92938B423545FDC001C9389 /* HikeView.swift */,
 				C92938B623545FEA001C9389 /* HikeDetail.swift */,
 				C92938B223545FAF001C9389 /* HikeGraph.swift */,
+				C98D31AB2382AA8D0039BBCA /* WeekSummaryItem.swift */,
 				C93D2C8B231FDF150055CDC4 /* Assets.xcassets */,
 				C93D2C90231FDF150055CDC4 /* LaunchScreen.storyboard */,
 				C93D2C93231FDF150055CDC4 /* Info.plist */,
@@ -155,9 +162,8 @@
 				C93D2C8D231FDF150055CDC4 /* Preview Content */,
 				C93D2CB5231FE5150055CDC4 /* ColorHelpers.swift */,
 				C95E5E2E2321165B0074A103 /* MeterView.swift */,
-				C95E81C823507B1A00E3D18A /* PainItem.swift */,
-				C95E81CA23508E8200E3D18A /* DetailView.swift */,
 				C92938C123546040001C9389 /* GraphCapsule.swift */,
+				C91164772355F32E003E5D9D /* TableView.swift */,
 			);
 			path = PainTracker;
 			sourceTree = "<group>";
@@ -173,7 +179,6 @@
 		C93D2C9B231FDF150055CDC4 /* PainTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C93D2C9C231FDF150055CDC4 /* PainTrackerTests.swift */,
 				C93D2C9E231FDF150055CDC4 /* Info.plist */,
 			);
 			path = PainTrackerTests;
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C93D2CA7231FDF150055CDC4 /* PainTrackerUITests.swift */,
+				C93D2C9C231FDF150055CDC4 /* PainTrackerTests.swift */,
 				C93D2CA9231FDF150055CDC4 /* Info.plist */,
 			);
 			path = PainTrackerUITests;
@@ -339,11 +345,13 @@
 				C93D2C88231FDF110055CDC4 /* PainTracker.xcdatamodeld in Sources */,
 				C93D2C8A231FDF110055CDC4 /* ContentView.swift in Sources */,
 				C92938BD2354601A001C9389 /* Data.swift in Sources */,
+				C98D31AC2382AA8D0039BBCA /* WeekSummaryItem.swift in Sources */,
 				C92938B723545FEA001C9389 /* HikeDetail.swift in Sources */,
 				C92938BF2354601A001C9389 /* Hike.swift in Sources */,
-				C95E81C923507B1A00E3D18A /* PainItem.swift in Sources */,
+				C91164782355F32E003E5D9D /* TableView.swift in Sources */,
 				C92938C223546041001C9389 /* GraphCapsule.swift in Sources */,
 				C93D2C85231FDF110055CDC4 /* SceneDelegate.swift in Sources */,
+				C9AEBF4923799CC900795119 /* PainKiller.swift in Sources */,
 				C93D2CB6231FE5150055CDC4 /* ColorHelpers.swift in Sources */,
 				C92938C02354601A001C9389 /* Landmark.swift in Sources */,
 			);
@@ -353,7 +361,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93D2C9D231FDF150055CDC4 /* PainTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E3662C237C2103005A4A5C /* PainTrackerTests.swift in Sources */,
 				C93D2CA8231FDF150055CDC4 /* PainTrackerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

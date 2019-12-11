@@ -37,9 +37,7 @@ struct HikeDetail: View {
                     }) {
                         Text(verbatim: value.0)
                             .font(.system(size: 15))
-                            .foregroundColor(value.1 == self.dataToShow
-                                ? Color.gray
-                                : Color.accentColor)
+                            .foregroundColor(value.1 == self.dataToShow ? Color.gray : Color.accentColor)
                             .animation(nil)
                     }
                 }
@@ -48,8 +46,8 @@ struct HikeDetail: View {
     }
 }
 
-struct HikeDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        HikeDetail(hike: hikeData[0])
-    }
-}
+//struct HikeDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HikeDetail(hike: hikeData[0])
+//    }
+//}

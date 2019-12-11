@@ -27,7 +27,36 @@ enum PainDimension: String, CaseIterable  {
     case duration =  "Duration" //"Varaktighet"
 }
 
+enum DragInfo {
+    case inactive
+    case active(translation: CGSize)
+
+    var translation: CGSize {
+        switch self {
+        case .inactive:
+            return .zero
+        case .active(let t):
+            return t
+        }
+    }
+
+    var isActive: Bool {
+        switch self {
+        case .inactive: return false
+        case .active: return true
+        }
+    }
+}
+
+enum ActiveSheet {
+   case datePicker, painKiller
+}
+
 struct DetailView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var userData: UserData
     
     @State private var meterValue = (current: DEFAULT_METER_VALUE, previous: DEFAULT_METER_VALUE) {
         didSet {
@@ -37,19 +66,32 @@ struct DetailView: View {
             }
         }
     }
+    @State private var painDimensionIndex = 0
     
-    @State private var painDimensionIndex: Int = 0
-    @State private var datePickerShowing: Bool = false
-    @State private var currentDate: Date = Date()
+    @State private var sheetIsPresenting = false
+    @State private var activeSheet: ActiveSheet = .datePicker
     
-    @Binding var isShowing: Bool
+    @State private var currentDate = Date()
     
+    @State private var message: String?
+    @State private var selectedPainKillerId: Int?
+
+    @GestureState private var dragInfo = DragInfo.inactive
+    
+    @FetchRequest(
+        entity: PainItem.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \PainItem.date, ascending: true)]
+    ) var painItems: FetchedResults<PainItem>
+    
+//    @ObservedObject private var model = ContentViewModel()
+    
+
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         return formatter
     }
-    
+        
     var body: some View {
         let meterView = MeterView(value: meterValue.current)
         let dragGesture = DragGesture()
@@ -59,13 +101,18 @@ struct DetailView: View {
                             .onEnded { gestureValue in
                                 self.meterValue.previous = self.meterValue.current
                             }
+                            .updating($dragInfo) { (value, dragInfo, _) in
+                                dragInfo = .active(translation: value.translation)
+                            }
         
-        return ZStack (alignment: .center) {
-                backgroundColor()
+        return ZStack {
+                Color.backgroundColor()
                 VStack (spacing: 10) {
+                    
+                    // top section
                     HStack {
                         Button(action: {
-                            self.isShowing.toggle()
+                            self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Image(systemName: "multiply.circle.fill")
                                 .resizable()
@@ -76,29 +123,81 @@ struct DetailView: View {
                         }
                         Spacer()
                         Button (action: {
-                            self.datePickerShowing.toggle()
+                            self.activeSheet = .datePicker
+                            self.sheetIsPresenting.toggle()
                         })
                         {
                             Text(dateFormatter.string(from:self.currentDate).uppercased())
                                 .font(.caption)
                                 .foregroundColor(.primary)
-                        }.sheet(isPresented: $datePickerShowing) {
-                            ModalView(date: self.$currentDate)
                         }
-                        
                     }
+                    // titles
                     TextBlock(counterValue: self.meterValue.current, headerText: headerText())
                         .fixedSize(horizontal: false, vertical: true)
+                    
+                    // meterview with gesture
                     ZStack() {
                         Rectangle()
-                            .fill(backgroundColor())
+                            .fill(Color.backgroundColor())
                         meterView
                     }.gesture(dragGesture)
-                    ButtonBlock(currentIndex: $painDimensionIndex)
+                    
+                    // bottom buttons
+                    HStack() {
+                        Image(systemName: message == nil ? "message" : "message.fill")
+                            .resizable()
+                            .aspectRatio(1, contentMode: .fit)
+                            .foregroundColor(Color.secondary)
+                            .frame(width: 25)
+                        Spacer()
+                        Picker(selection: $painDimensionIndex, label: Text("Dimension")) {
+                            ForEach(0 ..< PainDimension.allCases.count) {
+                                Text(PainDimension.allCases[$0].rawValue)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(maxWidth: 170)
+                        Spacer()
+                        
+                        Button(action: {
+                            self.activeSheet = .painKiller
+                            self.sheetIsPresenting.toggle()
+                        }) {
+                            Image(systemName: selectedPainKillerId == nil ? "bandage" : "bandage.fill")
+                                .resizable()
+                                .aspectRatio(1, contentMode: .fit)
+                                .foregroundColor(Color.secondary)
+                                .frame(width: 25)
+                        }
+                    }.padding()
                 }
                 .padding(.all, 40)
         }
         .edgesIgnoringSafeArea(.all)
+        .sheet(isPresented: $sheetIsPresenting) {
+            if self.activeSheet == .datePicker {
+                DateModalView(date: self.$currentDate)
+            }
+            else {
+                TableView(selectedItemId: self.$selectedPainKillerId, data: self.userData.painKillers)
+            }
+        }
+        .onDisappear {
+            let painItem = PainItem(context: self.managedObjectContext)
+            painItem.date = self.currentDate
+            painItem.duration = 2
+            painItem.level = Double(self.meterValue.current)
+            painItem.medicineId = Int64(self.selectedPainKillerId ?? 0)
+            painItem.message = self.message
+            
+            do {
+                try self.managedObjectContext.save()
+                print("Saved pain record: \(painItem.description)")
+            } catch {
+                // handle the Core Data error
+            }
+        }
     }
     
     private func headerText() -> String {
@@ -106,16 +205,10 @@ struct DetailView: View {
         case 0:
             return "Set your level of pain on a scale between 1 and 10." // Markera din nivå av smärta på en skala mellan 1 och 10."
         case 1:
-            return "Set the duration of the pain in number of hours." //"Markera hur länge under dygnet du har haft smärta, i antal timmar."
+            return "Set the duration of the pain in number of hours of the day." //"Markera hur länge under dygnet du har haft smärta, i antal timmar."
         default:
             return "Illigal choice" //"Ogiltigt val."
         }
-    }
-    
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
-
-    private func backgroundColor() -> Color  {
-        return colorScheme == .dark ? Color(hexValue: ALMOND_COLOR).lighten(-0.1) : Color(hexValue: ALMOND_COLOR).lighten(0.7)
     }
     
     private func croppedPercentValue<T : Comparable & Numeric>(_ value: T) -> T? {
@@ -123,37 +216,6 @@ struct DetailView: View {
         return value == croppedValue ? nil : croppedValue
     }
 }
-
-
-struct ButtonBlock : View {
-    
-    @Binding var currentIndex : Int
-    
-    var body: some View {
-        HStack() {
-            Image(systemName: "message")
-                .resizable()
-                .aspectRatio(1, contentMode: .fit)
-                .foregroundColor(Color.secondary)
-                .frame(width: 25)
-            Spacer()
-            Picker(selection: $currentIndex, label: Text("Dimension")) {
-                ForEach(0 ..< PainDimension.allCases.count) {
-                    Text(PainDimension.allCases[$0].rawValue)
-                }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .frame(maxWidth: 170)
-            Spacer()
-            Image(systemName: "bandage")
-                .resizable()
-                .aspectRatio(1, contentMode: .fit)
-                .foregroundColor(Color.secondary)
-                .frame(width: 25)
-        }.padding()
-    }
-}
-
 
 struct TextBlock : View {
     var counterValue : CGFloat
@@ -169,29 +231,23 @@ struct TextBlock : View {
     }
 }
 
-struct ModalView: View {
-    
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
+struct DateModalView: View {
+
     @Environment(\.presentationMode) var presentation
     @Binding var date: Date
 
     var body: some View {
         ZStack {
-            backgroundColor()
-            VStack {
+            Color.backgroundColor()
+            VStack(alignment: .center) {
                 Text("Select a date")
-                DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-                    Text("")
-                }
+                DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
+                    .labelsHidden()
                 Button("Done") {
                     self.presentation.wrappedValue.dismiss()
                 }
             }
-        }
-    }
-    
-    private func backgroundColor() -> Color  {
-        return colorScheme == .dark ? Color(hexValue: ALMOND_COLOR).lighten(-0.1) : Color(hexValue: ALMOND_COLOR).lighten(0.7)
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 

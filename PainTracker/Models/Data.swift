@@ -10,9 +10,6 @@ import CoreLocation
 import UIKit
 import SwiftUI
 
-//let landmarkData: [Landmark] = load("landmarkData.json")
-let hikeData: [Hike] = load("hikeData.json", as: [Hike].self) // type(of:[Hike]()))
-
 func load<T: Decodable>(_ filename: String, as type: T.Type = T.self) -> T {
     let data: Data
     
