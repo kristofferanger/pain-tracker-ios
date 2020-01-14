@@ -19,10 +19,6 @@ struct HikeDetail: View {
         ("Fri", \Hike.Observation.elevation),
         ("Sat", \Hike.Observation.elevation),
         ("Sun", \Hike.Observation.elevation)
-        
-//        ("Elevation", \Hike.Observation.elevation),
-//        ("Heart Rate", \Hike.Observation.heartRate),
-//        ("Pace", \Hike.Observation.pace),
     ]
     
     var body: some View {
